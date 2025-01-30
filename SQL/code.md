@@ -43,7 +43,7 @@ CREATE TABLE CUSTOMERS(
 
 * **Clauses:** SELECT, FROM, WHERE, JOIN, GROUP BY, ORDER BY HAVING, INSERT, UPDATE, DELETE - All row updates
 **Aggregate Queries:** SUM, COUNT, AVG, MAX, MIN, GROUP BY, HAVING
-* **Data Constraints:** Rules applied to columns or tables to enforce data integrity and consistency.
+* **Data/Integrity Constraints:** Rules applied to columns or tables to enforce data integrity and consistency.
 *NOT NULL* - Ensures that a column cannot have a NULL value
 *UNIQUE* - Ensures that all values in a column are different
 *PRIMARY KEY* - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
@@ -105,6 +105,39 @@ SQL achieve ACID compliance using Locking to hold transactions.
 NoSQL DBs are built as distributed systems, governed by CAP theorem — you can’t never have full consistency and full availability; you need to choose one.
 
 **Transaction Isolation Levels:** Degree to which the operations in one transaction are visible to other concurrent transactions. There are typically four standard levels: 
-Read Uncommitted (level 0 locking)  
-Read Committed (Avoids dirty reads)
-Repeatable Read, and Serializable.
+Read Uncommitted (level 0 locking) - Okay if high volumes of read-only data used in analytics
+Read Committed (Avoids dirty reads) - Product inventory read, used by default.
+Repeatable Read (Avoids anomalies on repeated read)
+Serializable - Transactions completely isolated.
+
+**Database Security:** To control access to sensitive data,and hand over same priviledges -
+1. GRANT - GRANT UPDATE ON ORDER_BACKLOG TO JONES/PUBLIC WITH GRANT OPTION
+2. REVOKE - REVOKE SELECT ON TABLE SMITH.TABLEA FROM BAKER BY ALL
+Some of the *best practices* are -
+1. Least Priviledge principle
+2. Regular Security Updates
+3. Complex and Secure Passwords
+4. Limit Remote connections
+5. Avoid using SQL Server Admin Account
+6. Encrypt Information
+7. Database Backups
+8. Monitoring and Auditing database changes
+9. Regular Vulnerability Scanning of security posture
+10. SQL Injection reduction using parameterized queries/prepared statements
+
+**Stored Procedures:** Unlike Functiones, they take no parameters, can modify database objects, and need not return results. Functions can be called from procedures, but procedures cannot be called from functions. Procedures cannot be used in SELECT statements, but functions can be embedded in SELECT statements. 
+
+* **Performance Tuning SQL Queries:** To enhance Server performance by reducing resource and time usage. Key strategies include indexing critical columns, optimizing complex query structure, query caching to reduce redundant database calls, reducing the use of resource-intensive operations like JOINs and GROUP BY, selecting only necessary columns (SELECT * should be avoided), and leveraging database-specific features such as partitioning, query hints, and execution plan analysis. Regularly monitoring and analyzing query performance, along with maintaining database health through routine tasks like updating statistics and managing indexes, are also vital to sustaining high performance.
+
+* **Advanced SQL:**
+1. Window Functions - Calculations on set of rows(sliding window)
+OVER - Designates window function
+PARTITION BY - Narrow the window from the entire dataset to individual groups within the dataset
+ROW_NUMBER() - Display the number
+RANK() - In case of match, same number, but starts next value after skipped row
+DENSE_RANK() - would give identical rows a rank of 2, but the following row would be 3—no ranks would be skipped.
+LAG(col, #) - gets the difference amount of current to the row number given by # in the past
+LEAD(col, #) - gets the difference in future
+
+* **Recursive Queries:** Repeated execution of a query within itself, enabling the traversal of hierarchical or tree-like data structures.
+eg: WITH RECURSIVE cte_name (two SELET statements, each for base case and recursive case)
