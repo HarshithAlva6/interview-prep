@@ -24,4 +24,19 @@ Redis Cloud create account -> database.
 **Basic AWS Services:** -
 1. **Route53:** AWS Domain Name System helps connect user requests to web application, redirect traffic, configure domain-related settings.
 2. **SES:** Simple Email Service is cloud-based email service.
-3. **EC2:** Elastic Compute Cloud is web service which provides compute capacity in the form of virtual servers/instances
+3. **EC2:** Elastic Compute Cloud is web service which provides compute capacity in the form of virtual servers/instances. Amazon Machine image is where we launch the virtual machine from.
+
+* **Checkpoint Deployment -**
+Setup an EC2 instance using any AMI (e.g. latest version of Ubuntu)
+SSH into the EC2 instance using the key pair you created
+Install Node.js on the EC2 instance
+Install Git on the EC2 instance
+Clone your application from GitHub
+Install and configure database on the EC2 instance (e.g. PostgreSQL)
+Make sure that the security group of the EC2 instance allows HTTP and HTTPS traffic
+Try to access your application using the public IP address of the EC2 instance
+Purchase or setup a domain name using Route53 (or any other domain name provider) and point it to the public IP address of the EC2 instance
+Setup HTTPs using certbot
+And voilla! You have deployed your application to AWS!
+
+ **Monit:** Used to monitor and manage system resources such as services, processes; files, directories and devices under CPU, memory, disk; and network connections. Other examples include Prometheus/ Grafana. Runs as a daemon(background) process. Runs in cycles of monitoring and sleeping in a configured period.

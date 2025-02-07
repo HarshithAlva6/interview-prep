@@ -128,7 +128,13 @@ Some of the *best practices* are -
 **Stored Procedures:** Unlike Functiones, they take no parameters, can modify database objects, and need not return results. Functions can be called from procedures, but procedures cannot be called from functions. Procedures cannot be used in SELECT statements, but functions can be embedded in SELECT statements. 
 
 * **Performance Tuning SQL Queries:** To enhance Server performance by reducing resource and time usage. Key strategies include indexing critical columns, optimizing complex query structure, query caching to reduce redundant database calls, reducing the use of resource-intensive operations like JOINs and GROUP BY, selecting only necessary columns (SELECT * should be avoided), and leveraging database-specific features such as partitioning, query hints, and execution plan analysis. Regularly monitoring and analyzing query performance, along with maintaining database health through routine tasks like updating statistics and managing indexes, are also vital to sustaining high performance.
-
+* Query Analysis Techniques -
+1. EXPLAIN USING TABULAR/TEXT/JSON SELECT...
+- Returns the logical execution plan for the specified SQL statement.
+2. Using Indexing
+3. Optimize Joins - Use Explicit JOINs, Use EXISTS Instead of IN, Avoid SELECT *, Reduce Join Operations, Use LIMIT and OFFSET Judiciously
+4. Reduce subqueries using recursion
+5. Selective Projection to choose specific columns
 * **Advanced SQL:**
 1. Window Functions - Calculations on set of rows(sliding window)
 OVER - Designates window function
@@ -140,4 +146,43 @@ LAG(col, #) - gets the difference amount of current to the row number given by #
 LEAD(col, #) - gets the difference in future
 
 * **Recursive Queries:** Repeated execution of a query within itself, enabling the traversal of hierarchical or tree-like data structures.
-eg: WITH RECURSIVE cte_name (two SELET statements, each for base case and recursive case)
+eg: WITH RECURSIVE cte_name (two SELECT statements, each for base case and recursive case)
+
+**Pivot SQL:** Divide components of data into different columns and rows to make it easier to analyze
+SELECT [Date] AS 'Day',
+    ISNULL([Sammich], 0) AS Sammich,
+    ISNULL([Pickle],  0) AS Pickle, 
+    ISNULL([Apple],   0) AS Apple,
+    ISNULL([Cake],    0) AS Cake
+FROM (
+    SELECT [Date], FoodName, AmountEaten FROM FoodEaten
+) AS SourceTable
+PIVOT (
+    MAX(AmountEaten)
+    FOR FoodName IN (
+        [Sammich], [Pickle], [Apple], [Cake]
+    )
+) AS PivotTable
+**Unpivot SQL:**
+UNPIVOT monthly_sales
+ON jan, feb, mar, apr, may, jun
+INTO
+    NAME month
+    VALUE sales;
+
+**Common Table Expressions:** (CTEs) in SQL are named temporary result sets and defined using WITH clause as virtual tables. Allow for recursive queries.
+WITH cte_name (column1, column2, ...) AS (
+    SELECT ...
+    FROM ...
+    WHERE ...
+)
+
+* **Dynamic SQL:** Dynamic SQL is a programming method that allows you to build SQL statements dynamically at runtime, in response to input or conditions. Risks include SQL Injection.
+
+sp_executesql is an extended stored procedure that can be used to execute dynamic SQL statements
+
+DECLARE @SQL nvarchar(1000)
+declare @Pid varchar(50)
+set @pid = '689'
+SET @SQL = 'SELECT ProductID,Name,ProductNumber FROM SalesLT.Product where ProductID = '+ @Pid
+EXEC (@SQL)

@@ -1,6 +1,12 @@
 * Brendan Eich in 1995 - ECMA standards, called ECMAScript
 
 * ECMAScript 5 (ES5) added new features to the Just-In-Time JavaScript language and modified some of the existing ones. To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: **use strict**.
+* JavaScript is *Object-oriented language* built around prototype model, from which properties are inherited by objects.
+In classical OOP languages, classes inherit data from other classes. In prototype-based languages, objects inherit data from objects, i.e., an object has access to all the properties of its prototype by means of inheritance.
+This is because every object in JavaScript has an internal [[Prototype]] attribute which contains a reference to its prototype. b = Object.create(a)
+**Prototype Chain:** A list of prototypes whose first item is the prototype of o, and any subsequent item is the prototype of the previous item, and the last item is simply null.
+* Properties defined on an object shadow properties available on its prototype. This is formally referred to as *property shadowing*. 
+* When we read a property from object, and it’s missing, JavaScript automatically takes it from the prototype. In programming, this is called *prototypal inheritance*. This is assigned using ___proto___
 * **Variables:** _boxes_ for data, where if value is changed, data replaced. camelCase and case-sensitive, $ and _ can also be variable names. var, let, const
 * **Data Types:** number, NaN, Infinity, BigInt, string ["",'',`${}`], boolean, null, undefined, symbol(NO CHAR) are primitive data type, unlike Objects(special)
 * **Operator:** typeof value
@@ -32,3 +38,7 @@ Use **this** on LHS to ensure the Object has this property.
 * **Promise:** Special JavaScript object that links the “producing code” and the “consuming code” together.
 * **DOM:** Host environment provides objects and functions in addition to JS. HTML backbone is tags -> objects. 
 document.body is object representing <body> tag
+
+**Built-in objects -** Number, Math, Date, String, Error, Function, Boolean
+**Data Type -** Number, BigInt, String, Boolean, Null, Undefined and Symbol
+**JavaScript Object Notation (JSON)** is a standard text-based format for representing structured data based on JavaScript object syntax. Converting between objects and text using JSON.parse() and JSON.stringify()
