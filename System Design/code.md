@@ -162,3 +162,23 @@ Based on number of transactions and volume of customers, determine capacity - wh
 Needed for billing, and enforce quotas to limit or throttle processing after a threshold.
 6. Instrumentation - Capture data, helps assess performance, diagnose problems and decisions without signing to remote prod server to trace and debug manually. (Categorized Logs or Metrics - measure of resource)
 7. Visualization and Alerts - Present data to immediately identify trends or problems.
+
+* **Cloud Design Patterns** Solutions to problems when running systems on cloud platform. Scalability, elasticity, Fault Tolerance, Microservices, Serverless, Data Management, Front-end and Back-end seperation, pay-per use pricing patterns.
+
+**Data Management** Ensure data consistency across hosted locations and servers, and synchronous in nature.
+1. Valet Key - App grants token(row or table) for restricted direct access to a resource in data store, helps offload data transfer from application to cloud-hosted storage systems. App needn't be a gatekeeper nor scale for compute or bandwidth.
+2. Static Content Hosting - Deploy static content to cloud. Compute resources can handle other web requests.
+3. Sharding - Horizontal partition of large data set into shards across multiple servers. Each can be managed and scaled independently. Storage space, computing resources, network bandwidth, geography limitations can be resolved. Strategies include -
+Lookup: Map request to shard using shard key.
+Range: Groupd items ordered by shard key, searched by range.
+Hash: Ensure to reduce hotspots(disproportionate shard recieved)
+4. Materialized View - Generate views when data not formatted for queries, for efficient querying.
+5. Index Table - Create indexes over frequently referenced fields in data stores. Either denormalise and duplicate data based on secondary keys, or access primary keys for double lookup, or a hybrid.
+6. Event Sourcing - Append-only store recording actions taken on the data. Helps materialize domain objects by reading event history.
+7. CQRS - Command and Query Responsibility Segregation, seperates read and update operations for a data store. Updates(commands) and reads(queries) models if seperated simplifies system design by improving scalability and performance for concurrent requests.
+8. Cache Aside - Load data on Cache on demand. App checks if data on cache, and if not, fetches from store and saves a copy in cache.
+
+* **Messaging** For communication between sender and reciever.
+1. Sequential Convoy - Execution of series of dependent tasks(convoy) in an order. Handled using state flows, workflows, transactions etc.
+2. Scheduling Agent Supervisor - Coordinate set of distributed actions as single operation. If anything fails, undo the work - ensures resiliency.
+Scheduler arranges steps of task, and orchestrate the operation in a pipeline. Records workflow state and complete-by time. When a step requires resource or service access, send it to the appropriate Agent using queues. Agent has logic for calls to remote service

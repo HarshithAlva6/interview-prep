@@ -1,0 +1,1 @@
+Spring is open-source framework. Spring Core is core module which provides Dependency Injection(DI) and Inversion of Control(IoC)
