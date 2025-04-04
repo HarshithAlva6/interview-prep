@@ -38,3 +38,25 @@ a, X, 9, < -- ordinary characters just match themselves exactly.
 5. Recursion
 
 **Package Managers** allow you to manage the dependencies using   PyPI and Pip
+
+
+List comprehensions - Create a list using single line of code in Python.
+
+Pydantic - Library for data validation and settings management using python type annotations.
+Fast API - Web framework for building RESTful API's, based on Pydantic to validate, serialize and deserialize, auto-generate OpenAPI documents. Built on top of Asynchronous Server Gateway Interface (ASGI)
+Flask - WSGI micro web framework which doesn't need particular tools or libraries. No database abstraction layer, form validation, components where pre-existing third party libraries provide common functions.
+
+Common Packages - Directory having multiple modules and subpackages. eg-python-dotenv, numpy, pandas
+List comprehensions - Create list using single line of code in Python.
+Generator Expressions - Contain yield statement that returns generator object(iterator). Uses () instead of [] used in list.
+Paradigms -
+1. Imperative: Step by step handling
+2. OOP: Objects and interactions.
+3. Functional Programming: Pure functions and immutable data, with Higher order functions, lambda expressions, generators.
+4. Aspect Oriented Programming: Seperating cross-cutting concerns from main functionality, achieved using libraries. Use @Aspect, @Before, @After
+5. Context Manager: Set context for block of code, and and clean up or release resources once block is exited. Used with the 'with' statement.
+
+OOP -
+1. Classes: Blueprints for Objects.
+2. Inheritance: To allow class to inherit properties and behaviour.
+3. Methods, Dunder - Similar to function, but assoicated to object. Dunder has prefix and suffix double underscores.

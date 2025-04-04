@@ -181,4 +181,29 @@ Hash: Ensure to reduce hotspots(disproportionate shard recieved)
 * **Messaging** For communication between sender and reciever.
 1. Sequential Convoy - Execution of series of dependent tasks(convoy) in an order. Handled using state flows, workflows, transactions etc.
 2. Scheduling Agent Supervisor - Coordinate set of distributed actions as single operation. If anything fails, undo the work - ensures resiliency.
-Scheduler arranges steps of task, and orchestrate the operation in a pipeline. Records workflow state and complete-by time. When a step requires resource or service access, send it to the appropriate Agent using queues. Agent has logic for calls to remote service
+Scheduler arranges steps of task, and orchestrate the operation in a pipeline. Records workflow state and complete-by time. 
+When a step requires resource or service access, send it to the appropriate Agent using queues. Agent has logic for calls to remote service.
+Supervisor monitors status of steps maintained by scheduler periodically. If failed or time out, arranges Agents accordingly.
+3. Publisher Subscriber - Application announces events to multiple interested consumers asynchronously via brokers. No need to couple senders and recievers.
+4. Priority Queue - Services recieve and process higher priority requests first.
+5. Pipes and Filters - Complex task decomposedinto seperate elements which can be reusable. Improves performance, scalability, reusability for task elements, now deployed and scaled independently.
+6. Competing Consumers - Multiple Concurrent consumers can process messages recieved on same messaging channel to optimize throughput.
+7. Choreography - System components participate in decision making process, instead of central point of control(orchestrator).
+8. Claim Check - Large message broken down into claim check and payload. Claim check sent to messaging platform, payload in external service. Ensures message bus isn't overwhelmed.
+9. Async Request-Reply - Decouple backend processing from frontend to handle asynchronously.
+
+* **Design and Implementation** 
+1.  Strangler Fig - Migrate legacy systems incrementally by replacing pieces of functionality with new application and services. Helps strangle old system and decommission.
+2. Sidecar - Deploy components into seperate process to provide isolation or encapsulation, and enable heterogeneous component mix. Supporting features, same lifecycle, etc.
+3. Static Content Hosting - Deploy static content to cloud-based storage. Reduce need for expensive compute instances.
+4. Leader Election - A collection of collaborating instances in distributed application coordinated by electing a leader that assumes responsibility. Help share resources, no conflicts, no interference.
+5. CQRS - Command and Query Responsibility Segregation. Help maximise performance, scalability, and security by seperating read and update operations for data store.
+6. Pipes and Filters - Decompose complex task into series of seperate elements that can be reused. Deploy and scale independently.
+7. Ambassador - Helper services send network requests on behalf of consumer service. Out-of-process proxy co-located with client. Helps in monitoring, logging, routing, TLS, used in legacy applications.
+8. Gateway Routing - Route requests to multiple services using single endpoint. Helps expose multiple requests on single endpoint, or of same service for load balancing.
+9. Gateway Offloading - Shared or specialised service functionality to gateway proxy such as SSL certificates.
+10. Gateway Aggregation - Multiple individual requests aggregated into single request.
+11. External Config Store - Move coonfig info out of application deployment package to centralised location, helps ease management, more control, share this across applications and its instances.
+12. Compute Resource Consolidation - Consolidate tasks into single computational unit. Increase compute resource utilization, reduce costs and management overhead for performing compute processing.
+13. Backends for Frotnend - Seperate backend services consumed for specific frotnend applications.
+14. Anti-Corruption Layer - Facade or Adapter layer between subsystems without same semantics for translation. Helps not limit dependencies.
