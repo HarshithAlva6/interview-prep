@@ -207,3 +207,15 @@ Supervisor monitors status of steps maintained by scheduler periodically. If fai
 12. Compute Resource Consolidation - Consolidate tasks into single computational unit. Increase compute resource utilization, reduce costs and management overhead for performing compute processing.
 13. Backends for Frotnend - Seperate backend services consumed for specific frotnend applications.
 14. Anti-Corruption Layer - Facade or Adapter layer between subsystems without same semantics for translation. Helps not limit dependencies.
+
+**Reliability Patterns**
+Withstand failures, recover from disruptions.
+Availability - Percentage of uptime, affected by system errors, infra problems, malicious attacks. Cloud apps provide users with SLA to ensure design with maximum availability.
+1. Deployment Stamps -  Provision, manage and monitor heterogeneous group of resources. Each copy is called a stamp. In a multi-tenant environment, every stamp serves predefined number of tenants. Multiple stamps deployed to scale linearly.
+2. Geodes - Deploying a collection of backend services into a set of geographical nodes, each of which can service any request for any client in any region. 
+3. Throttling - Control resource consumption used by instance of app. Helps meet SLA's even when demand increase exists.
+4. Health Endpoint Monitoring - Functional checks in an app that external tools access through endpoints.
+5. Queue-based load leveling - Queue is buffer between task and service it invokes to avoid load on service or task to fail.
+
+High Availability - Azure infra has geographies, regions and availability zones that limit blast radius of failure, NOT affecting customers. Azure AZ provides software solutions to protect against datacenter failures and give High Availability.
+1. Circuit Breakers - Handle faults that take variable time, when connecting to remote service.

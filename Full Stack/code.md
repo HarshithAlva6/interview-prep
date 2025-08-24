@@ -40,3 +40,10 @@ Setup HTTPs using certbot
 And voilla! You have deployed your application to AWS!
 
  **Monit:** Used to monitor and manage system resources such as services, processes; files, directories and devices under CPU, memory, disk; and network connections. Other examples include Prometheus/ Grafana. Runs as a daemon(background) process. Runs in cycles of monitoring and sleeping in a configured period.
+
+ * **Checkpoint - Monitoring** Monitor and autorestart for your app.
+ **Github Actions** - Workflow automation tool used to automate tasks in the app development process.
+
+ * **Checkpoint - CI/CD** When changes pushed to master, automatically run tests and deploy application to AWS.
+
+ **Ansible** Open source configuration management, app deployment and provisioning tool

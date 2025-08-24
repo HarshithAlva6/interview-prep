@@ -42,3 +42,8 @@ document.body is object representing <body> tag
 **Built-in objects -** Number, Math, Date, String, Error, Function, Boolean
 **Data Type -** Number, BigInt, String, Boolean, Null, Undefined and Symbol
 **JavaScript Object Notation (JSON)** is a standard text-based format for representing structured data based on JavaScript object syntax. Converting between objects and text using JSON.parse() and JSON.stringify()
+
+Structured Data - Used by search engines to understand content.
+Keyed Collections - Data Collections ordered by Key instead of Index. Associative.
+1. Map - Key value pairs
+2. WeakMap - 
